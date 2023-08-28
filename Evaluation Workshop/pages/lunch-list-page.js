@@ -1,18 +1,13 @@
-import { expect } from '@playwright/test';
+import { expect } from "@playwright/test";
 
-export class LunchListPage{
-    constructor(page) {
-        this.page = page;
-    }
-
-
-async navigateToLoginPage() {
-    const { page } = this;
-    await page.goto('https://lunch.devbstaging.com/login-password');
-    await expect(page.locator('.headline')).toHaveText('Sign in');
+export class LunchListPage {
+  constructor(page) {
+    this.page = page;
+    this.linkEditLunch = page.locator("//span[normalize-space()='Lunch Editing']");
+    this.registeredUserName = page.locator('.v-subheader.theme--dark');
   }
 
-  async checkIfInProductPage() {
-    await expect(this.page.locator('.title')).toContainText('Products');
-  }
+  async clickEditLunch() {
+    await this.linkEditLunch.click();
+  };
 }
